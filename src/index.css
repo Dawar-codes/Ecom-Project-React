@@ -2,46 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    background-color: azure;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+html, body {
+  background-color: ghostwhite;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.modal {
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .modal[open] {
-    transform: translateX(0);
-  }
-  
-  .modal[closing] {
-    transform: translateX(-100%);
-  }
-  
-  @keyframes slide-in {
-    0% {
-      transform: translateX(-100%); /* Start from left outside */
-    }
-    100% {
-      transform: translateX(0); /* End in position */
-    }
-  }
-  
-  @keyframes slide-out {
-    0% {
-      transform: translateX(0); /* Start at current position */
-    }
-    100% {
-      transform: translateX(-100%); /* End off-screen to the left */
-    }
-  }
-  
-  /* Add these in your Tailwind config or a global CSS file */
-  .animate-slide-in {
-    animation: slide-in 300ms ease-in-out forwards;
-  }
-  
-  .animate-slide-out {
-    animation: slide-out 300ms ease-in-out forwards;
-  }
+#root {
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* Header, content, and footer */
+  min-height: 100vh;
+}
+
+main {
+  flex: 1; /* Allow the main content to grow and push the footer down */
+}
+
