@@ -2,31 +2,34 @@ import { Link } from "react-router-dom";
 
 export default function ProductItem({ product }) {
   return (
-    <Link>
-      <div className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl hover:[transform:scale(1.01)] transition">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-48 object-cover"
-        />
-        <div className="p-4">
-          <h3 className="text-md font-semibold text-gray-800">
-            {product.name}
-          </h3>
-          <p className="text-sm text-gray-600 mt-1">{product.description}</p>
-          <p className="text-xl font-bold text-gray-900 mt-2">
-            ${product.price}
-          </p>
-          <div className="mt-4">
-            <Link
-              to={`/products/${product.id}`}
-              className="text-pink-500 hover:text-pink-400 font-semibold"
-            >
-              Add to Cart
-            </Link>
+    <div className="max-w-sm">
+      <Link to={`/products/${product.id}`}>
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-transform duration-300 transform hover:scale-[1.01] flex flex-col h-full">
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-48 object-cover"
+          />
+          <div className="p-4 flex flex-col justify-between flex-grow">
+            <h3 className="text-lg font-semibold text-gray-800">
+              {product.name}
+            </h3>
+            <p className="text-sm text-gray-600 mt-1 block w-52 overflow-hidden whitespace-nowrap overflow-ellipsis">
+              {product.description}
+            </p>
+            <p className="text-xl font-semibold text-gray-900 mt-2">
+              ${product.price}
+            </p>
+
+            {/* Add to Cart button inside the product card container */}
+            <div className="mt-4">
+              <button className="border border-black p-2 rounded-full text-gray-800 font-semibold hover:bg-gray-200 transition-colors duration-200 w-full text-center block">
+                Add to Cart
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 }
