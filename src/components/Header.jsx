@@ -2,8 +2,15 @@ import { Link } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 import { GiBullHorns } from "react-icons/gi";
+import { useDispatch } from "react-redux";
+import { modalActions } from "../components/store/index.js";
 
 export default function Header() {
+  const dispatch = useDispatch();
+
+  function handleModal() {
+    dispatch(modalActions.toggle());
+  }
   return (
     <header>
       <nav className=" flex justify-between items-center h-20 lg:h-[5.5rem] p-6 bg-zinc-800 text-zinc-200 lg:p-8">
@@ -30,12 +37,12 @@ export default function Header() {
             className="text-2xl lg:text-4xl cursor-pointer hover:text-leather-400 transition"
             aria-label="Search"
           />
-          <Link
-            to="/products/cart"
+          <button
+            onClick={handleModal}
             className="text-lg lg:text-xl font-semibold hover:hover:text-leather-400 transition"
           >
             Cart
-          </Link>
+          </button>
         </div>
       </nav>
     </header>

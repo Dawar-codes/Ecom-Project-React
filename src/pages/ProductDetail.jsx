@@ -1,4 +1,17 @@
+import { DUMMY_PRODUCTS } from "./ProductsHome"; 
+
+import {useParams} from 'react-router-dom';
+
+
 export default function ProductDetailPage() {
+    const param = useParams();
+
+    const id = param.id;
+
+    const product = DUMMY_PRODUCTS.find((product) => product.id === id);
+
+
+
     return (
         <div>
          
@@ -9,7 +22,7 @@ export default function ProductDetailPage() {
                 {/* Product Image */}
                 <div className="flex-1">
                   <img
-                    src="path/to/product-image.jpg"
+                    src={product.image}
                     alt="Product"
                     className="w-full h-full object-cover rounded-lg"
                   />

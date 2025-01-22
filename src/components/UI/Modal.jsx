@@ -6,11 +6,12 @@ export default function Modal({ children, onClose }) {
 
   useEffect(() => {
     const modal = dialog.current;
-    modal.showModal();
-
-    // return () => {
-    //   modal.close();
-    // };
+   
+      modal.showModal();
+    
+    return () => {
+      modal.close(); // needed to avoid error being thrown
+    };
   }, []);
 
   return createPortal(

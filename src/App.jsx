@@ -11,9 +11,12 @@ import ProductDetailPage from "./pages/ProductDetail";
 import AuthLayout from "./components/layouts/Auth";
 import LoginPage from "./pages/Login";
 import SignupPage from "./pages/Signup";
-import CartPage from "./pages/Cart";
+// import CartPage from "./pages/Cart";
 import AdminLayout from "./components/layouts/Admin";
 import NewProductPage from "./pages/NewProduct";
+import CartPage from "./pages/Cart";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const router = createBrowserRouter([
   {
@@ -27,9 +30,9 @@ const router = createBrowserRouter([
       {
         path: "products",
         element: <Products />,
-        children: [
-          {path: "cart", element: <CartPage /> }
-        ],
+        // children: [
+        //   {path: "cart", element: <CartPage /> }
+        // ],
       },
       {
         path: "products/:id",
@@ -68,9 +71,17 @@ const router = createBrowserRouter([
 const queryClient = new QueryClient();
 
 export default function App() {
+  const modal = useSelector((state) => state.modal.open);
+  useEffect(() => {
+    console.log(modal);
+    
+  },[modal])
   return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
+    <>
+      
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} >{modal && <CartPage />}</RouterProvider>
+      </QueryClientProvider>
+    </>
   );
 }

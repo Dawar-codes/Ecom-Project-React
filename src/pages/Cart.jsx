@@ -2,12 +2,22 @@ import Modal from "../components/UI/Modal.jsx";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { useDispatch } from "react-redux";
+import { modalActions } from "../components/store/index.js";
+
+
 
 export default function CartPage() {
+  const dispatch = useDispatch();
+ 
   const navigate = useNavigate();
 
+   function handleModalClose() {
+      dispatch(modalActions.toggle());
+    }
+
   return (
-    <Modal onClose={() => navigate("../")}>
+    <Modal onClose={() => navigate("/products")}>
       <main className="container mx-auto my-8 px-2 max-w-md">
         <h1 className="text-2xl font-semibold text-gray-800 mb-6">Your Cart</h1>
 
@@ -48,13 +58,16 @@ export default function CartPage() {
 
           {/* Cancel Button */}
           <div className="mt-4 flex gap-3">
-            <Link
-              to="../"
+            <button
+              onClick={handleModalClose}
               className="text-xs hover:text-black border border-gray-400 hover:border-black px-3 py-1 rounded-full transition duration-300 ease-in-out"
             >
               Cancel
-            </Link>
-            <Link to="/checkout" className="px-3 py-1 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition text-sm">
+            </button>
+            <Link
+              to="/checkout"
+              className="px-3 py-1 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition text-sm"
+            >
               Checkout
             </Link>
           </div>

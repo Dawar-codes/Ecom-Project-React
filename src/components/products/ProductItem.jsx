@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { modalActions } from "../store";
 
 export default function ProductItem({ product }) {
+
+  const dispatch = useDispatch();
+  function handleCartOpen() {
+       dispatch(modalActions.toggle());
+     }
+
   return (
     <div className="max-w-sm">
       <Link to={`/products/${product.id}`}>
@@ -23,7 +31,7 @@ export default function ProductItem({ product }) {
 
             {/* Add to Cart button inside the product card container */}
             <div className="mt-4">
-              <button className="border border-black p-2 rounded-full text-gray-800 font-semibold hover:bg-gray-200 transition-colors duration-200 w-full text-center block">
+              <button onClick={handleCartOpen} className="border border-black p-2 rounded-full text-gray-800 font-semibold hover:bg-gray-200 transition-colors duration-200 w-full text-center block">
                 Add to Cart
               </button>
             </div>

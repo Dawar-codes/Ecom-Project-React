@@ -1,7 +1,10 @@
+import { useEffect } from "react";
 import ProductItem from "../components/products/ProductItem";
-import {Outlet} from 'react-router-dom';
+// import {Outlet} from 'react-router-dom';
+import CartPage from "./Cart";
+import { useSelector } from "react-redux";
 
-const DUMMY_PRODUCTS = [
+export const DUMMY_PRODUCTS = [
   {
     id: "p1",
     name: "Leather wallet Brown",
@@ -37,12 +40,12 @@ const DUMMY_PRODUCTS = [
 
   {
     id: "p5",
-    name: "Antique Black Leather Wallet",
+    name: "Antique Brown Leather Wallet",
     description:
-      "Black leather wallet made to celebrate the 75th anniversary of Boatmen's Bank in 1922.",
+      "Brown leather wallet.",
     price: 9999,
     image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Leather_Wallet_from_Boatmen%27s_Bank_-_DPLA_-_7c8c9682d3858b78b766eca691d81681_%28page_1%29.jpg/1024px-Leather_Wallet_from_Boatmen%27s_Bank_-_DPLA_-_7c8c9682d3858b78b766eca691d81681_%28page_1%29.jpg",
+      "https://martboutique.com/cdn/shop/products/4ad90000243f9b585032c5ac00fa861b_800x.png?v=1625914650",
   },
   {
     id: "p6",
@@ -54,10 +57,17 @@ const DUMMY_PRODUCTS = [
   },
 ];
 
+
 export default function Products() {
+    // const modal = useSelector((state) => state.open);
+    // useEffect(() => {
+    //   console.log(modal);
+      
+    // },[modal])
+    
   return (
     <>
-    <Outlet/>
+     {/* {modal && <CartPage/>} */}
       <h1 className="text-center text-4xl mt-6 font-extralight border-b pb-4">
         Our products
       </h1>
