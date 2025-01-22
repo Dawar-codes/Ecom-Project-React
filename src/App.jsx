@@ -71,16 +71,10 @@ const router = createBrowserRouter([
 const queryClient = new QueryClient();
 
 export default function App() {
-  const modal = useSelector((state) => state.modal.open);
-  useEffect(() => {
-    console.log(modal);
-    
-  },[modal])
   return (
     <>
-      
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} >{modal && <CartPage />}</RouterProvider>
+        <RouterProvider router={router} />
       </QueryClientProvider>
     </>
   );

@@ -5,19 +5,20 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { modalActions } from "../components/store/index.js";
 
-
-
 export default function CartPage() {
   const dispatch = useDispatch();
- 
-  const navigate = useNavigate();
 
-   function handleModalClose() {
-      dispatch(modalActions.toggle());
-    }
+  // const navigate = useNavigate();
+
+  function handleModalClose() {
+    dispatch(modalActions.toggle());
+  }
 
   return (
-    <Modal onClose={() => navigate("/products")}>
+    <Modal
+
+    // onClose={() => navigate("/products")}
+    >
       <main className="container mx-auto my-8 px-2 max-w-md">
         <h1 className="text-2xl font-semibold text-gray-800 mb-6">Your Cart</h1>
 
