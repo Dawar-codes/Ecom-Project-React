@@ -11,14 +11,11 @@ export default function CartPage() {
   // const navigate = useNavigate();
 
   function handleModalClose() {
-    dispatch(modalActions.toggle());
+    dispatch(modalActions.handleClose());
   }
 
   return (
-    <Modal
-
-    // onClose={() => navigate("/products")}
-    >
+    <Modal onClose={handleModalClose}>
       <main className="container mx-auto my-8 px-2 max-w-md">
         <h1 className="text-2xl font-semibold text-gray-800 mb-6">Your Cart</h1>
 
@@ -65,12 +62,14 @@ export default function CartPage() {
             >
               Cancel
             </button>
-            <Link
-              to="/checkout"
-              className="px-3 py-1 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition text-sm"
-            >
-              Checkout
-            </Link>
+            <button onClick={handleModalClose}>
+              <Link
+                to="/checkout"
+                className="px-3 py-1 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition text-sm"
+              >
+                Checkout
+              </Link>
+            </button>
           </div>
         </div>
       </main>

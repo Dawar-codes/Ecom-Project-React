@@ -71,7 +71,7 @@ export default function Products() {
       <h1 className="text-center text-4xl mt-6 font-extralight border-b pb-4">
         Our products
       </h1>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:mx-20 my-20">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mx-5 lg:mx-20 my-20">
         {DUMMY_PRODUCTS.map((product) => (
           <ProductItem key={product.id} product={product} />
         ))}
