@@ -13,42 +13,42 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Users {
+model users {
   id         Int        @id @default(autoincrement())
   name       String
   email      String     @unique
   password   String
   role       String     @default("customer")
   created_at DateTime   @default(now())
-  products   Products[]
+  products   products[]
 }
 
-model Products {
+model products {
   id          Int      @id @default(autoincrement())
-  user        Users?   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user        users?   @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id     Int?
-  Title       String
-  Description String
-  Price       Int
+  title       String
+  description String
+  price       Int
   image_url   String
   created_by  String
   created_at  DateTime @default(now())
-  Orders      Orders[]
+  orders      orders[]
 }
 
-model Orders {
+model orders {
   id            Int             @id @default(autoincrement())
-  product       Products        @relation(fields: [product_Id], references: [id], onDelete: Cascade)
+  product       products        @relation(fields: [product_Id], references: [id], onDelete: Cascade)
   product_Id    Int
-  Quantity      Int
-  Price         Int
+  quantity      Int
+  price         Int
   created_at    DateTime        @default(now())
   shipping_info shipping_info[]
 }
 
 model shipping_info {
   id         Int      @id @default(autoincrement())
-  order      Orders   @relation(fields: [order_Id], references: [id], onDelete: Cascade)
+  order      orders   @relation(fields: [order_Id], references: [id], onDelete: Cascade)
   order_Id   Int
   name       String
   email      String
