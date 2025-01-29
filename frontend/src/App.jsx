@@ -14,9 +14,7 @@ import SignupPage from "./pages/Signup";
 // import CartPage from "./pages/Cart";
 import AdminLayout from "./components/layouts/Admin";
 import NewProductPage from "./pages/NewProduct";
-import CartPage from "./pages/Cart";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
+
 
 const router = createBrowserRouter([
   {
