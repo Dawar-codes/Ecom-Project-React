@@ -1,9 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { fetchProduct } from "../util/https";
 import { formatter } from "../components/store/priceFormatter";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../components/store/cart-slice";
 
 export default function ProductDetailPage() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const param = useParams();
 
   const id = param.id;
@@ -23,6 +27,15 @@ export default function ProductDetailPage() {
         Error fetching data. Please refresh.
       </h1>
     );
+  }
+
+  function handleAddItemToCart() {
+    dispatch(cartActions.addToCart(data))
+  }
+
+  function handleBuyNow() {
+    dispatch(cartActions.addToCart(data));
+    navigate("/checkout");
   }
 
   return (
@@ -50,10 +63,10 @@ export default function ProductDetailPage() {
               <p className="text-xl font-semibold text-gray-900 mb-4">{formatter.format(data.price)}</p>
 
               <div className="flex gap-4 mb-6">
-                <button className="bg-blue-600 text-white py-2 px-6 rounded hover:bg-blue-700 transition">
+                <button onClick={handleAddItemToCart} className="bg-blue-600 text-white py-2 px-6 rounded hover:bg-blue-700 transition">
                   Add to Cart
                 </button>
-                <button className="border-2 border-gray-300 py-2 px-6 rounded hover:bg-gray-200 transition">
+                <button onClick={handleBuyNow} className="border-2 border-gray-300 py-2 px-6 rounded hover:bg-gray-200 transition">
                   Buy Now
                 </button>
               </div>

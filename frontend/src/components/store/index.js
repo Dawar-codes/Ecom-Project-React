@@ -1,21 +1,27 @@
-import { createSlice, configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
-const modalSlice = createSlice({
-    name: 'modal',
-    initialState: { open: false },
-    reducers: {
-        handleOpen(state) {
-            state.open = true;
-        },
-        handleClose(state) {
-            state.open = false;
-        }
-    }
+import {persistStore, persistReducer} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+import modalSliceReducer from './modal-slice';
+import cartSliceReducer from './cart-slice';
+
+const persistConfig = {
+    key: 'root',
+    storage,
+    whitelist: ['cart']
+}
+
+const rootReducer = combineReducers({
+    cart: cartSliceReducer,
+    modal: modalSliceReducer,
+  });
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+ 
+
+export const store = configureStore({
+    reducer: persistedReducer, 
 })
 
-export const modalActions = modalSlice.actions;
-
-const store = configureStore({
-    reducer: { modal: modalSlice.reducer }
-})
-export default store;
+export const persistor = persistStore(store);

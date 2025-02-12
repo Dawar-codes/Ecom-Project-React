@@ -14,12 +14,14 @@ import SignupPage from "./pages/Signup";
 // import CartPage from "./pages/Cart";
 import AdminLayout from "./components/layouts/Admin";
 import NewProductPage from "./pages/NewProduct";
+import ErrorPage from "./pages/Error";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
+    errorElement: <ErrorPage/>,
     children: [
       {
         index: true,
@@ -47,7 +49,7 @@ const router = createBrowserRouter([
     path: "/admin",
     element: <AdminLayout />, // Admin Layout for admin-specific pages
     children: [
-      { path: "new", element: <NewProductPage /> }, // Route for adding new products
+      { path: "newProduct", element: <NewProductPage /> }, // Route for adding new products
     ],
   },
   {

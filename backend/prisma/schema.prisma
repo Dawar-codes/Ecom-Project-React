@@ -21,35 +21,46 @@ model users {
   role       String     @default("customer")
   created_at DateTime   @default(now())
   products   products[]
+  orders     orders[]
 }
 
 model products {
-  id          Int      @id @default(autoincrement())
-  user        users?   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  id          Int         @id @default(autoincrement())
+  user        users?      @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id     Int?
   title       String
   description String
   price       Int
   image_url   String
-  created_by  String
-  created_at  DateTime @default(now())
-  orders      orders[]
+  created_at  DateTime    @default(now())
+  orderItems  orderItem[]
 }
 
 model orders {
-  id            Int             @id @default(autoincrement())
-  product       products        @relation(fields: [product_Id], references: [id], onDelete: Cascade)
-  product_Id    Int
+  id            Int            @id @default(autoincrement())
+  user          users?         @relation(fields: [userId], references: [id])
+  userId        Int?
   quantity      Int
   price         Int
-  created_at    DateTime        @default(now())
-  shipping_info shipping_info[]
+  created_at    DateTime       @default(now())
+  orderItems    orderItem[]
+  shipping_info shipping_info?
+}
+
+model orderItem {
+  id        Int      @id @default(autoincrement())
+  order     orders   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId   Int
+  product   products @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId Int
+  quantity  Int
+  price     Int 
 }
 
 model shipping_info {
   id         Int      @id @default(autoincrement())
   order      orders   @relation(fields: [order_Id], references: [id], onDelete: Cascade)
-  order_Id   Int
+  order_Id   Int      @unique
   name       String
   email      String
   address    String

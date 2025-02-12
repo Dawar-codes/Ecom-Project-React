@@ -1,10 +1,16 @@
 import { useMutation } from "@tanstack/react-query";
 import { useActionState } from "react";
 import { createUser } from "../util/https";
+import { useNavigate } from "react-router-dom";
 
 export default function SignupPage() {
+  const navigate = useNavigate();
   const { mutate, isPending, isError, error } = useMutation({
     mutationFn: createUser,
+    onSuccess: (data) => {
+      localStorage.setItem("userRole", data.user.role); // stores role
+      navigate("/");
+    },
   });
 
   function signupAction(prevState, formData) {
@@ -38,9 +44,6 @@ export default function SignupPage() {
       };
     }
 
-    console.log("Data to send:", { name, email, password });
-
-    
 
     mutate({ name, email, password });
 

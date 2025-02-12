@@ -7,13 +7,13 @@ import CartPage from "../../pages/Cart";
 import { useSelector } from "react-redux";
 
 export default function RootLayout() {
-  const location = useLocation();
+  // const location = useLocation();
 
-  const noHeaderFooterRoutes = ["/checkout"];
+  // const noHeaderFooterRoutes = ["/checkout"];
 
-  const shouldShowHeaderFooter = !noHeaderFooterRoutes.includes(
-    location.pathname
-  );
+  // const shouldShowHeaderFooter = !noHeaderFooterRoutes.includes(
+  //   location.pathname
+  // );
 
   const modal = useSelector((state) => state.modal.open);
 
@@ -24,13 +24,13 @@ export default function RootLayout() {
   return (
     <>
       <div id="root">
-        {shouldShowHeaderFooter && <Header />}
+        <Header />
         {modal && <CartPage />}
 
         <main>
           <Outlet />
         </main>
-        {shouldShowHeaderFooter && <Footer />}
+        <Footer />
       </div>
     </>
   );
