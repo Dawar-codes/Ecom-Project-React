@@ -32,7 +32,7 @@ app.use(passport.session());
 
 
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://yak-leather.netlify.app');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader(
         'Access-Control-Allow-Methods',
         'GET, POST, PUT, DELETE, OPTIONS'
