@@ -1,10 +1,13 @@
 import axios from 'axios';
 
+const BASE_URL = "https://yak-leather.onrender.com";
 
 // fetch all products
 export async function fetchProducts(searchTerm = "") {
     try {
-        const url = searchTerm ? `http://localhost:3000/products?search=${encodeURIComponent(searchTerm)}` : "http://localhost:3000/products";
+        const url = searchTerm 
+            ? `${BASE_URL}/products?search=${encodeURIComponent(searchTerm)}`
+            : `${BASE_URL}/products`;
         const response = await axios.get(url);
         const products = response.data;
 
