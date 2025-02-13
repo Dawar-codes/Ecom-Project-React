@@ -24,7 +24,7 @@ export async function fetchProducts(searchTerm = "") {
 // fetch single product
 export async function fetchProduct({ id, signal }) {
     try {
-        const response = await axios.get(`http://localhost:3000/products/${id}`, { signal });
+        const response = await axios.get(`https://yak-leather.onrender.com/products/${id}`, { signal });
         const product = response.data;
         return product;
 
@@ -46,7 +46,7 @@ export async function fetchProduct({ id, signal }) {
 export async function addProduct({ name, description, price, image }) {
 
     try {
-        const response = await axios.post('http://localhost:3000/products/new', { name, description, price, image }, {
+        const response = await axios.post('https://yak-leather.onrender.com/products/new', { name, description, price, image }, {
             withCredentials: true,
             headers: { 'Content-Type': 'application/json' }
         });
@@ -66,7 +66,7 @@ export async function createUser({ name, email, password }) {
 
 
     try {
-        const response = await axios.post("http://localhost:3000/auth/register", { name, email, password }, { headers: { 'Content-Type': 'application/json' } })
+        const response = await axios.post("https://yak-leather.onrender.com/auth/register", { name, email, password }, { headers: { 'Content-Type': 'application/json' } })
         return response.data;
     } catch (error) {
         console.error("Error during Registration:", error.response?.data || error.message);
@@ -80,7 +80,7 @@ export async function createUser({ name, email, password }) {
 export async function loginUser({ email, password }) {
 
     try {
-        const response = await axios.post("http://localhost:3000/auth/login", { email, password }, {
+        const response = await axios.post("https://yak-leather.onrender.com/auth/login", { email, password }, {
             withCredentials: true  // Include credentials in this request
         }, { headers: { 'Content-Type': 'application/json' } })
         return response.data;
@@ -95,7 +95,7 @@ export async function loginUser({ email, password }) {
 export async function checkoutOrder(payload) {
     try {
       const response = await axios.post(
-        "http://localhost:3000/checkout",
+        "https://yak-leather.onrender.com/checkout",
         payload,{
             withCredentials: true  // Include credentials in this request
         },
@@ -110,7 +110,7 @@ export async function checkoutOrder(payload) {
 
 export async function logout() {
     try {
-        await axios.post("http://localhost:3000/auth/logout", {}, { withCredentials: true });
+        await axios.post("https://yak-leather.onrender.com/auth/logout", {}, { withCredentials: true });
         localStorage.removeItem("userRole"); // Remove role from local storage
         window.location.reload(); // Force UI update
     } catch (error) {
